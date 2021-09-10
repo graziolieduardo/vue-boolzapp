@@ -2,6 +2,8 @@ Vue.config.devtools = true;
 const app = new Vue({
     el: '#root',
     data: {
+        imagesPath: 'img/avatar',
+        imagesExtension: '.jpg',
         contacts: [
             {
                 name: 'Michele',

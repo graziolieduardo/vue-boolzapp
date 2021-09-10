@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Linked Font Awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Linked Font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,10 +21,42 @@
         <div class="sub-container clearfix">
             <!-- inizio users nav  -->
             <div class="users-nav">
-                <div class="user-profile"></div>
-                <div class="notifications"></div>
-                <div class="search-contact"></div>
-                <div class="chat"></div>
+                <!-- user profile  -->
+                <div class="user-profile">
+                    <div class="user-info">
+                        <img src="img/avatar_io.jpg" alt="Immagine Profilo">
+                        <span>Eduardo Grazioli</span>
+                    </div>
+                    <div class="user-icons">
+                        <i class="fas fa-circle-notch"></i>
+                        <i class="fas fa-comment-alt"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+                <!-- notifications  -->
+                <div class="notifications">
+                    <div class="notification-icon">
+                        <i class="fas fa-bell-slash"></i>
+                    </div>
+                    <div class="notification-info">
+                        <div>Ricevi notifiche di nouvi messaggi</div>
+                        <div>Attiva notifiche desktop</div>
+                    </div>
+                </div>
+                <!-- search-contact  -->
+                <div class="search-contact">
+                    <button>
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <input type="text" placeholder="Cerca o inizia una nuova chat">
+                </div>
+                <!-- chat  -->
+                <div class="chat">
+                    <div v-for="(contact, index) in contacts" class="contact">
+                        <img :src="imagesPath + contacts[index].avatar + imagesExtension" alt="Contact 1">
+                        <span>{{ contacts[index].name }}</span>
+                    </div>
+                </div>
             </div>
 
             <!-- inizio msg container  -->
