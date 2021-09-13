@@ -126,7 +126,9 @@ const app = new Vue({
                     element.visible = true;
                 } else if (!upperEl.startsWith(upperSearch)) {
                     element.visible = false;
-                } 
+                } else {
+                    element.visible = true;
+                }
         }); 
        }
     }
