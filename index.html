@@ -64,7 +64,7 @@
                 <!-- msg top  -->
                 <div class="msg-top">
                     <div class="user-info">
-                        <template v-if="activeContact.visible == true">
+                        <template v-if="activeContact != ''">
                             <img :src="'img/avatar' + activeContact.avatar + '.jpg'" :alt="activeContact.name">
                             <div>
                                 <div>{{ activeContact.name }}</div>
@@ -81,7 +81,7 @@
                 <!-- msg center  -->
                 <div class="msg-center clearfix">
                     <template v-for="(messageData, index) in activeContact.messages">
-                        <div v-if="activeContact != ''" class="message-row clearfix">
+                        <div class="message-row clearfix">
                             <div :class="messageData.status == 'sent' ? 'sent' : 'received'" class="message-box">
                                 <span>{{ messageData.message }}</span>
                                 <span>{{ messageData.date }}</span>
