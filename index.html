@@ -51,14 +51,16 @@
                     <button>
                         <i class="fas fa-search"></i>
                     </button>
-                    <input type="text" placeholder="Cerca o inizia una nuova chat">
+                    <input @keyUp="searchContact" type="text" placeholder="Cerca o inizia una nuova chat" v-model="search">
                 </div>
                 <!-- chat  -->
                 <div class="chat">
-                    <div @click="getActiveContact" v-for="(contact, index) in contacts" class="contact" :data-contact="index" :class="contact == activeContact ? 'active-contact' : null">
-                        <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
-                        <span>{{ contact.name }}</span>
-                    </div>
+                    <template v-for="(contact, index) in contacts">
+                        <div v-if="contact.visible == true" @click="getActiveContact" class="contact" :data-contact="index" :class="contact == activeContact ? 'active-contact' : null">
+                            <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
+                            <span>{{ contact.name }}</span>
+                        </div>
+                    </template>
                 </div>
             </div>
 

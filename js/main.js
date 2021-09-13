@@ -2,6 +2,7 @@ Vue.config.devtools = true;
 const app = new Vue({
     el: '#root',
     data: {
+        search: '',
         message: '',
         activeContact: "",
         contacts: [
@@ -116,6 +117,18 @@ const app = new Vue({
         },
         getTime() {
             return ( '0' + dayjs().date()).slice(-2) + '/' + ('0' + (dayjs().month() + 1)).slice(-2) + '/' + dayjs().year() + ' ' + ( '0' + dayjs().hour()).slice(-2) + ':' + ( '0' + dayjs().minute()).slice(-2) + ':' + ('0' + dayjs().second()).slice(-2);
+       },
+       searchContact() {
+           this.contacts.forEach((element) => {
+               let upperSearch = this.search.toUpperCase();
+               let upperEl = element.name.toUpperCase()
+                if (upperSearch == '') {
+                    element.visible = true;
+                } else if (!upperEl.startsWith(upperSearch)) {
+                    element.visible = false;
+                } 
+        }); 
        }
     }
 });
+
