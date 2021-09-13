@@ -2,6 +2,7 @@ Vue.config.devtools = true;
 const app = new Vue({
     el: '#root',
     data: {
+        message: '',
         activeContact: "",
         contacts: [
             {
@@ -90,8 +91,31 @@ const app = new Vue({
         getActiveContact(e) {
             let index = parseInt(e.target.dataset.contact);
             this.activeContact = this.contacts[index];
-        }
+        },
+        sendMessage() {
+            if(this.message != '') {
+                this.activeContact.messages.push(
+                    {
+                        date: this.getTime(),
+                        message: this.message,
+                        status: 'sent'
+                    }
+                );
+                this.message = '';
+                setTimeout(this.automaticAnswer, 2000);
+            }
+        },
+        automaticAnswer() {
+            this.activeContact.messages.push(
+                {
+                    date: this.getTime(),
+                    message: 'Ok',
+                    status: 'received'
+                }
+            );
+        },
+        getTime() {
+            return ( '0' + dayjs().date()).slice(-2) + '/' + ('0' + (dayjs().month() + 1)).slice(-2) + '/' + dayjs().year() + ' ' + ( '0' + dayjs().hour()).slice(-2) + ':' + ( '0' + dayjs().minute()).slice(-2) + ':' + ('0' + dayjs().second()).slice(-2);
+       }
     }
 });
-
-
