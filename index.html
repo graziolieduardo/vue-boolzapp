@@ -52,21 +52,57 @@
                 </div>
                 <!-- chat  -->
                 <div class="chat">
-                    <div v-for="(contact, index) in contacts" class="contact">
-                        <img :src="imagesPath + contacts[index].avatar + imagesExtension" alt="Contact 1">
-                        <span>{{ contacts[index].name }}</span>
+                    <div @click="getActiveContact" v-for="(contact, index) in contacts" class="contact" :data-contact="index">
+                        <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
+                        <span>{{ contact.name }}</span>
                     </div>
                 </div>
             </div>
 
             <!-- inizio msg container  -->
             <div class="msg-container">
-                <div class="msg-top"></div>
-                <div class="msg-center"></div>
-                <div class="msg-bottom"></div>
+                <!-- msg top  -->
+                <div class="msg-top">
+                    <div class="user-info">
+                        <template v-for="(contact, index) in contacts">
+                            <template v-if="contact.visible == true">
+                                <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
+                                <div>
+                                    <div>{{ contact.name }}</div>
+                                    <div>Ultimo acesso oggi alle</div>
+                                </div>
+                            </template>
+                        </template>
+                    </div>
+                    <div class="user-icons">
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-paperclip"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+                <!-- msg center  -->
+                <div class="msg-center clearfix">
+                    <template v-for="(contact, index) in contacts">
+                        <template v-for="(messageData, index) in contact.messages">
+                            <div v-if="contact.visible == true" class="message-row clearfix">
+                                <div :class="messageData.status == 'sent' ? 'sent' : 'received'" class="message-box">
+                                    <span>{{ messageData.message }}</span>
+                                    <span>{{ messageData.date }}</span>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+                <!-- msg bottom  -->
+                <div class="msg-bottom">
+                    <i class="far fa-smile"></i>
+                    <input type="text" placeholder="Scrivi un messagio">
+                    <i class="fas fa-microphone"></i>
+                </div>
             </div>
         </div>
     </div>
+
     <!-- Linked main JS  -->
     <script src="js/main.js"></script>
 </body>

@@ -81,6 +81,7 @@ body {
 
 .user-profile .user-icons i {
     margin: 0px 10px;
+    cursor: pointer;
 }
 
 /* notifications  */
@@ -157,6 +158,12 @@ body {
     height: 80px;
     border-bottom: 1px solid #FAFAFA;
     padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.chat .contact:hover {
+    background-color: #FAFAFA;
 }
 
 .chat .contact img {
@@ -170,27 +177,120 @@ body {
 }
 
 /* msg container  */
+/* msg top  */
 
 .msg-top {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     height: 65px;
     background-color: #EAEAEA;
     border-left: 1px solid lightgray;
 }
 
+.msg-top .user-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+    margin-left: 10px;
+}
+
+.msg-top .user-info img {
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.msg-top .user-icons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 30%;
+    font-size: 21px;
+    color: #B1B1B1;
+    padding: 10px;
+}
+
+.msg-top .user-icons i {
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.msg-top .user-info > div div:last-child {
+    font-size: 14px;
+    color: gray;
+}
+
+/* msg center  */
 .msg-center {
     width: 100%;
     height: calc(100% - 130px);
     background-image: url('../img/mine.jpg');
     background-size: 50%;
     overflow-y: scroll;
+    padding: 50px;
 }
 
+.message-row {
+    width: 100%;
+}
+
+.message-box {
+    position: relative;
+    width: 40%;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.message-box span:last-child{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    padding: 5px;
+    color: gray;
+}
+
+.sent {
+    float: right;
+    background-color: #DCF8C6;
+}
+
+.received {
+    float: left;
+    background-color: white;
+}
+
+
+
+/* msg bottom  */
 .msg-bottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     height: 65px;
     background-color: #F3EEEA;
+    padding: 10px;
 }
+
+.msg-bottom input {
+    width: 85%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    outline: 0;
+}
+
+.msg-bottom i {
+    width: 30px;
+    font-size: 25px;
+    color: gray;
+    cursor: pointer;
+}
+
 
 
 
