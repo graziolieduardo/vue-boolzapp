@@ -89,9 +89,8 @@ const app = new Vue({
         ]
     }, 
     methods: {
-        getActiveContact(e) {
-            let index = parseInt(e.target.dataset.contact);
-            this.activeContact = this.contacts[index];
+        getActiveContact(e,i) {
+            this.activeContact = this.contacts[i];
         },
         sendMessage() {
             if(this.message != '') {
@@ -124,7 +123,8 @@ const app = new Vue({
                let upperEl = element.name.toUpperCase()
                 if (upperSearch == '') {
                     element.visible = true;
-                } else if (!upperEl.startsWith(upperSearch)) {
+                } else if (!upperEl.startsWith(upperSearch))
+                  /*else if (!upperEl.includes(upperSearch))*/ {
                     element.visible = false;
                 } else {
                     element.visible = true;

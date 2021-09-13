@@ -56,9 +56,17 @@
                 <!-- chat  -->
                 <div class="chat">
                     <template v-for="(contact, index) in contacts">
-                        <div v-if="contact.visible == true" @click="getActiveContact" class="contact" :data-contact="index" :class="contact == activeContact ? 'active-contact' : null">
+                        <div v-if="contact.visible == true" @click="getActiveContact(contact, index)" class="contact" :class="contact == activeContact ? 'active-contact' : null">
                             <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
-                            <span>{{ contact.name }}</span>
+                            <div>
+                                <span>{{ contact.name }}</span>
+                                <div class="last-msg">
+                                    {{ contact.messages[contact.messages.length - 1].message }}
+                                </div>
+                            </div>
+                            <span class="nav-time">
+                                {{ contact.messages[contact.messages.length - 1].date }}
+                            </span>
                         </div>
                     </template>
                 </div>
