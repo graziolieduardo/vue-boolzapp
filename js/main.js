@@ -2,6 +2,7 @@ Vue.config.devtools = true;
 const app = new Vue({
     el: '#root',
     data: {
+        activeContact: "",
         contacts: [
             {
                 name: 'Michele',
@@ -92,6 +93,7 @@ const app = new Vue({
             });
             let index = parseInt(e.target.dataset.contact);
             this.contacts[index].visible = true;
+            this.activeContact = this.contacts[index];
         }
     }
 });

@@ -52,7 +52,7 @@
                 </div>
                 <!-- chat  -->
                 <div class="chat">
-                    <div @click="getActiveContact" v-for="(contact, index) in contacts" class="contact" :data-contact="index">
+                    <div @click="getActiveContact" v-for="(contact, index) in contacts" class="contact" :data-contact="index" :class="contact == activeContact ? 'active-contact' : null">
                         <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
                         <span>{{ contact.name }}</span>
                     </div>
@@ -64,14 +64,12 @@
                 <!-- msg top  -->
                 <div class="msg-top">
                     <div class="user-info">
-                        <template v-for="(contact, index) in contacts">
-                            <template v-if="contact.visible == true">
-                                <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
-                                <div>
-                                    <div>{{ contact.name }}</div>
-                                    <div>Ultimo acesso oggi alle</div>
-                                </div>
-                            </template>
+                        <template v-if="activeContact.visible == true">
+                            <img :src="'img/avatar' + activeContact.avatar + '.jpg'" :alt="activeContact.name">
+                            <div>
+                                <div>{{ activeContact.name }}</div>
+                                <div>Ultimo acesso oggi alle</div>
+                            </div>
                         </template>
                     </div>
                     <div class="user-icons">
@@ -82,15 +80,13 @@
                 </div>
                 <!-- msg center  -->
                 <div class="msg-center clearfix">
-                    <template v-for="(contact, index) in contacts">
-                        <template v-for="(messageData, index) in contact.messages">
-                            <div v-if="contact.visible == true" class="message-row clearfix">
-                                <div :class="messageData.status == 'sent' ? 'sent' : 'received'" class="message-box">
-                                    <span>{{ messageData.message }}</span>
-                                    <span>{{ messageData.date }}</span>
-                                </div>
+                    <template v-for="(messageData, index) in activeContact.messages">
+                        <div v-if="activeContact != ''" class="message-row clearfix">
+                            <div :class="messageData.status == 'sent' ? 'sent' : 'received'" class="message-box">
+                                <span>{{ messageData.message }}</span>
+                                <span>{{ messageData.date }}</span>
                             </div>
-                        </template>
+                        </div>
                     </template>
                 </div>
                 <!-- msg bottom  -->
