@@ -54,18 +54,18 @@
                     <input @keyUp="searchContact" type="text" placeholder="Cerca o inizia una nuova chat" v-model="search">
                 </div>
                 <!-- chat  -->
-                <div class="chat">
+                <div @click="closeDropdownMenu" class="chat">
                     <template v-for="(contact, index) in contacts">
                         <div v-if="contact.visible == true" @click="getActiveContact(contact, index)" class="contact" :class="contact == activeContact ? 'active-contact' : null">
                             <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
                             <div>
                                 <span>{{ contact.name }}</span>
-                                <div class="last-msg">
-                                    {{ contact.messages[contact.messages.length - 1].message }}
+                                <div v-if="contact.messages.length > 0" class="last-msg">
+                                    {{ contact.messages[parseInt(contact.messages.length - 1)].message }}
                                 </div>
                             </div>
-                            <span class="nav-time">
-                                {{ contact.messages[contact.messages.length - 1].date }}
+                            <span v-if="contact.messages.length > 0" class="nav-time">
+                                {{ contact.messages[parseInt(contact.messages.length - 1)].date }}
                             </span>
                         </div>
                     </template>
@@ -96,12 +96,16 @@
                     <template v-for="(messageData, index) in activeContact.messages">
                         <div class="message-row clearfix">
                             <div :class="messageData.status == 'sent' ? 'sent' : 'received'" class="message-box">
+                                <!-- messaggio  -->
                                 <span>{{ messageData.message }}</span>
+                                <!-- data messaggio  -->
                                 <span class="date">{{ messageData.date }}</span>
-                                <i @click="openDropdownMenu" class="fas fa-chevron-down"></i>
-                                <div class="dropdown-menu">
+                                <!-- arrow per aprire dropmenu  -->
+                                <i @click="openDropdownMenu(index)" :class="activeMessage == index ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
+                                <!-- dropdown menu  -->
+                                <div v-if="activeMessage == index" class="dropdown-menu">
                                     <span>Message info</span>
-                                    <span @click="deleteMsg(index)" class="delete-msg">Delete message</span>
+                                    <span @click="[deleteMsg(index), closeDropdownMenu]" class="delete-msg">Delete message</span>
                                 </div>
                             </div>
                         </div>

@@ -5,6 +5,7 @@ const app = new Vue({
         search: '',
         message: '',
         activeContact: "",
+        activeMessage: null,
         contacts: [
             {
                 name: 'Michele',
@@ -118,7 +119,7 @@ const app = new Vue({
             );
         },
         getTime() {
-            return dayjs().format('DD/MM/YYYY hh:mm:ss' )
+            return dayjs().format('DD/MM/YYYY hh:mm:ss')
         },
         searchContact() {
             this.contacts.forEach((element) => {
@@ -134,13 +135,36 @@ const app = new Vue({
                 }
             }); 
         },
-        openDropdownMenu(e) {
-            let menu = e.target.nextElementSibling;
-            menu.classList.toggle('show')
+        openDropdownMenu(index) {
+            if(this.activeMessage != index) {
+                this.activeMessage = index
+            }
+            else {
+                this.activeMessage = null;  
+            }
+
+            // vanilla JS
+            // let dropMenu = e.target.nextElementSibling;
+            // dropMenu.classList.toggle('show')
         },
         deleteMsg(index) {
-           this.activeContact.messages.splice(index, 1);
-        } 
+            this.activeContact.messages.splice(index, 1);
+            if (this.activeContact.messages.length == 0)
+                this.activeContact.visible = false;
+
+            for (let i = 0; i < this.contacts.length; i++) {
+                if (this.contacts[i].visible == true && this.activeContact.messages.length == 0)
+                    return this.activeContact = this.contacts[i];
+            }
+        },
+        closeDropdownMenu() {
+            this.activeMessage = null;
+        }
+    },
+    mounted() {
+        this.activeContact = this.contacts[0];
     }
 });
+
+
 
