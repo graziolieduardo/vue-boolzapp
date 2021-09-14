@@ -101,7 +101,7 @@
                                 <i @click="openDropdownMenu" class="fas fa-chevron-down"></i>
                                 <div class="dropdown-menu">
                                     <span>Message info</span>
-                                    <span>Delete message</span>
+                                    <span @click="deleteMsg(index)" class="delete-msg">Delete message</span>
                                 </div>
                             </div>
                         </div>

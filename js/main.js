@@ -119,11 +119,11 @@ const app = new Vue({
         },
         getTime() {
             return dayjs().format('DD/MM/YYYY hh:mm:ss' )
-       },
-       searchContact() {
-           this.contacts.forEach((element) => {
-               let upperSearch = this.search.toUpperCase();
-               let upperEl = element.name.toUpperCase()
+        },
+        searchContact() {
+            this.contacts.forEach((element) => {
+                let upperSearch = this.search.toUpperCase();
+                let upperEl = element.name.toUpperCase()
                 if (upperSearch == '') {
                     element.visible = true;
                 } else if (!upperEl.startsWith(upperSearch))
@@ -132,12 +132,15 @@ const app = new Vue({
                 } else {
                     element.visible = true;
                 }
-        }); 
-       },
-       openDropdownMenu(e) {
+            }); 
+        },
+        openDropdownMenu(e) {
             let menu = e.target.nextElementSibling;
             menu.classList.toggle('show')
-       }
+        },
+        deleteMsg(index) {
+           this.activeContact.messages.splice(index, 1);
+        } 
     }
 });
 
