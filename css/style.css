@@ -31,6 +31,10 @@ body {
     min-width: 800px;
 }
 
+.show {
+    display: block!important;
+}
+
 /* users nav  */
 
 .users-nav {
@@ -261,6 +265,8 @@ body {
 }
 
 .message-box {
+    display: flex;
+    justify-content: space-between;
     position: relative;
     min-width: 30%;
     max-width: 60%;
@@ -269,13 +275,36 @@ body {
     margin: 10px 0;
 }
 
-.message-box span:last-child{
+.message-box .date{
     position: absolute;
     right: 0;
     bottom: 0;
     font-size: 12px;
     padding: 5px;
     color: gray;
+}
+
+.message-box i {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.message-box .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: -60px;
+    width: 150px;
+    background-color: white;
+    box-shadow: 0px 0px 5px;
+    z-index: 5;
+    padding: 10px;
+    color: gray;
+}
+
+.message-box .dropdown-menu span {
+    display: inline-block;
+    margin: 5px 0;
 }
 
 .sent {
@@ -287,8 +316,6 @@ body {
     float: left;
     background-color: white;
 }
-
-
 
 /* msg bottom  */
 .msg-bottom {

@@ -97,7 +97,12 @@
                         <div class="message-row clearfix">
                             <div :class="messageData.status == 'sent' ? 'sent' : 'received'" class="message-box">
                                 <span>{{ messageData.message }}</span>
-                                <span>{{ messageData.date }}</span>
+                                <span class="date">{{ messageData.date }}</span>
+                                <i @click="openDropdownMenu" class="fas fa-chevron-down"></i>
+                                <div class="dropdown-menu">
+                                    <span>Message info</span>
+                                    <span>Delete message</span>
+                                </div>
                             </div>
                         </div>
                     </template>
